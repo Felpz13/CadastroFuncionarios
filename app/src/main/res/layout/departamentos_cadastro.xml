@@ -2,37 +2,34 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#ff34">
 
     <TextView
-            android:id="@+id/titulo_dep"
-            android:text="Departamentos:"
-            android:textSize="42dp"
+            android:text="Cadastro de departamento: "
+            android:textSize="28dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"/>
-
-    <ListView
-            android:id="@+id/lista_dep"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/lay_novo"
-            android:layout_below="@id/titulo_dep">
-
-
-    </ListView>
+            android:layout_height="wrap_content"/>
 
     <FrameLayout
-            android:id="@+id/lay_novo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
     >
 
         <Button
-                android:id="@+id/bt_nv_dep"
-                android:text="Novo"
+                android:id="@+id/bt_cad_inserir"
+                android:text="Inserir"
                 android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+        />
+
+        <Button
+                android:id="@+id/bt_cad_voltar"
+                android:text="voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
