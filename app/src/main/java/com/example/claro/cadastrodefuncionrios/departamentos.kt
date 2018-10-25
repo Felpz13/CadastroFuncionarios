@@ -16,38 +16,32 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dep_item.*
 import kotlinx.android.synthetic.main.departamentos.*
+import kotlinx.android.synthetic.main.departamentos.view.*
 
-class departamentos : Fragment()
-{
+class departamentos : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
-        var fgView = inflater.inflate(R.layout.departamentos,container,false)
+        var fgView = inflater.inflate(R.layout.departamentos, container, false)
 
         var listView = fgView.findViewById(R.id.lista_dep) as ListView
 
-        var nomes : ArrayList<dep> = ArrayList()
+        var nomes: ArrayList<dep> = ArrayList()
 
 
-        if (nomes.count() > 0)
-        {
+        if (nomes.count() > 0) {
             listView.adapter = adapterDep(getActivity()!!.getApplicationContext(), nomes)
-        }
-
-        else
-        {
+        } else {
 
             nomes.add(dep("Nenhum departamento cadastrado", 30))
             listView.adapter = adapterDep(getActivity()!!.getApplicationContext(), nomes)
         }
 
+        fgView.bt_nv_dep.setOnClickListener { view ->
+            Toast.makeText(context, "ADD DEPARTAMENTO", Toast.LENGTH_SHORT).show()
+        }
 
         return fgView
-    }
-
-    fun novoDepartamento()
-    {
-        Toast.makeText(activity, "Test", Toast.LENGTH_LONG).show()
     }
 }
 
