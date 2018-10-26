@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+>
+
+    <ImageView
+            android:id="@+id/foto"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentLeft="true"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="4dp"
+
+
+    />
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/foto"
+            android:layout_centerVertical="true"
+    >
+
+        <TextView
+                android:id="@+id/rg_txt"
+                android:textSize="22sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RG:"
+                android:textColor="#212121"
+
+                android:layout_below="@+id/nome_txt"
+                android:layout_marginRight="4sp"
+                android:layout_marginLeft="6sp"
+
+        />
+
+        <TextView
+                android:id="@+id/rg"
+                android:textSize="22sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="111111111111"
+                android:layout_toRightOf="@+id/nome_txt"
+                android:textColor="#212121"
+                android:layout_below="@+id/nome_fun"
+                android:layout_marginRight="4sp"
+                android:layout_marginLeft="6sp"
+
+        />
+
+        <TextView
+                android:id="@+id/nome_txt"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome:"
+                android:textColor="#212121"
+                android:layout_marginRight="4sp"
+                android:layout_marginLeft="6sp"
+
+        />
+
+        <TextView
+                android:id="@+id/nome_fun"
+                android:textSize="22sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exemplo"
+                android:textColor="#212121"
+                android:layout_toRightOf="@+id/nome_txt"
+                android:layout_marginRight="4sp"
+                android:layout_marginLeft="6sp"
+
+        />
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

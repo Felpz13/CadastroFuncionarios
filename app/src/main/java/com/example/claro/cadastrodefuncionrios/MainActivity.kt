@@ -2,7 +2,8 @@ package com.example.claro.cadastrodefuncionrios
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
+import com.example.claro.cadastrodefuncionrios.fragments.departamentos
 
 
 class MainActivity : AppCompatActivity()
@@ -20,7 +21,9 @@ class MainActivity : AppCompatActivity()
 
     fun inicio()
     {
-        supportFragmentManager.beginTransaction().replace(R.id.container, departamentos()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container,
+            departamentos()
+        ).commit()
     }
 
 }

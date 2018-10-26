@@ -6,7 +6,7 @@
 
     <TextView
             android:id="@+id/titulo_dep"
-            android:text="Departamentos:"
+            android:text="Funcionarios:"
             android:textSize="42dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -14,17 +14,17 @@
             android:layout_marginBottom="24dp"/>
 
     <TextView
-            android:id="@+id/txt_sem_cad"
+            android:id="@+id/txt_sem_cad_fun"
             android:textColor="#aa0506"
             android:layout_centerInParent="true"
             android:visibility="gone"
-            android:text="NENHUM DEPARTAMENTO CADASTRADO"
+            android:text="NENHUM FUNCIONARIO CADASTRADO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
 
     <ListView
-            android:id="@+id/lista_dep"
+            android:id="@+id/lista_fun"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/lay_novo"
@@ -41,9 +41,17 @@
     >
 
         <Button
-                android:id="@+id/bt_nv_dep"
+                android:id="@+id/bt_nv_fun"
                 android:text="Novo"
                 android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+        />
+
+        <Button
+                android:id="@+id/bt_lista_func_voltar"
+                android:text="voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"

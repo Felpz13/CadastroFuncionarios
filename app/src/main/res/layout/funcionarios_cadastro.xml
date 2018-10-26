@@ -6,7 +6,7 @@
 
     <TextView
             android:id="@+id/cd_titulo"
-            android:text="Cadastro de departamento: "
+            android:text="Cadastro de Funcionarios: "
             android:textSize="24dp"
             android:layout_margin="12dp"
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
     >
 
         <Button
-                android:id="@+id/bt_cad_inserir"
+                android:id="@+id/bt_fun_inserir"
                 android:text="Inserir"
                 android:layout_gravity="end"
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
         />
 
         <Button
-                android:id="@+id/bt_cad_voltar"
+                android:id="@+id/bt_fun_voltar"
                 android:text="voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
