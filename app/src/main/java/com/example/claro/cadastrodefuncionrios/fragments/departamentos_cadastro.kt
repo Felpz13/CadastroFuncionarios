@@ -50,18 +50,28 @@ class departamentos_cadastro : Fragment()
             var nome : String = nome_dpto.text.toString()
             var sigla : String = sigla_dpto.text.toString()
             var img = imgs[i]
+            val regex = Regex(".*\\d+.*")
 
             Log.d("CURA", "NOME: $nome")
             Log.d("CURA", "SIGLA: $sigla")
             Log.d("CURA", "IMG: $img")
 
-            db.inserirDpto(nome, sigla, img)
+            if (nome.matches(regex))
+            {
+                Toast.makeText(activity, "Nome Inserido Inválido", Toast.LENGTH_SHORT).show()
+            }
+
+            else
+            {
+                db.inserirDpto(nome, sigla, img)
+                fragmentManager?.beginTransaction()?.replace(R.id.container,
+                    departamentos()
+                )?.remove(this)?.commit()
+            }
 
             fgView.hideKeyboard()
 
-            fragmentManager?.beginTransaction()?.replace(R.id.container,
-                departamentos()
-            )?.remove(this)?.commit()
+
 
         }
 
