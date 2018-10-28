@@ -73,6 +73,13 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
         db.close()
     }
 
+    fun deleteAll() {
+        val db = this.writableDatabase
+
+        db.delete("departamentos", null, null)
+        db.close()
+    }
+
     companion object
     {
         internal val dbname = "userDB"

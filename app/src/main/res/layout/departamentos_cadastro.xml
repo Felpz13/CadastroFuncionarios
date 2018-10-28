@@ -13,11 +13,12 @@
             android:layout_height="wrap_content"/>
 
     <LinearLayout
-            android:id="@+id/dados"
-            android:layout_centerVertical="true"
+            android:id="@+id/cima"
+            android:layout_below="@id/cd_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="22dp"
             android:layout_margin="12dp">
 
         <TextView
@@ -27,21 +28,41 @@
                 android:textStyle="bold"
                 android:textColor="#212121"
                 android:textSize="22dp"
+                android:layout_marginBottom="12pt"
         />
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sigla:"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:textSize="22dp"
+        />
 
     </LinearLayout>
 
     <LinearLayout
-            android:layout_toRightOf="@+id/dados"
-            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/cima"
+            android:layout_below="@id/cd_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginRight="24dp">
+            android:layout_marginTop="22dp"
+            android:layout_margin="12dp">
 
         <EditText
-                android:id="@+id/nome"
+                android:id="@+id/nome_dpto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#212121"
+                android:textSize="22dp"
+                android:layout_marginBottom="12pt"
+                android:background="#cfcdce"
+        />
+
+        <EditText
+                android:id="@+id/sigla_dpto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#212121"
@@ -52,7 +73,56 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+            android:layout_margin="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/baixo"
+            android:layout_below="@+id/cima">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Icone: "
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:textSize="22dp"
+                android:layout_marginBottom="12pt"
+        />
+
+        <ImageView
+                android:id="@+id/bt_cad_img_ant"
+                android:layout_width="40dp"
+                android:layout_height="80dp"
+                android:layout_toLeftOf="@+id/img_dpto"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/ic_left"
+                android:layout_centerVertical="true"
+        />
+
+        <ImageView
+                android:id="@+id/img_dpto"
+                android:layout_centerInParent="true"
+                android:src="@drawable/d1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+        >
+        </ImageView>
+
+        <ImageView
+                android:id="@+id/bt_cad_img_prox"
+                android:layout_width="40dp"
+                android:layout_height="80dp"
+                android:layout_toRightOf="@+id/img_dpto"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_right"
+                android:layout_centerVertical="true"
+        />
+
+    </RelativeLayout>
+
     <FrameLayout
+            android:id="@+id/baixo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -24,16 +24,19 @@ class departamentos : Fragment()
 
         var fgView = inflater.inflate(R.layout.departamentos, container, false)
 
-        var listView = fgView.findViewById(R.id.lista_dep) as ListView
+        var listView = fgView.lista_dep as ListView
 
         var nomes: ArrayList<dep> = ArrayList()
 
         db = dbHelper(activity!!.applicationContext)
 
-        Log.d("CURA", "DEPARTAMENTOS")
+        //db.deleteAll()
 
         nomes = db.listarDpto()
 
+
+
+        Log.d("CURA", "DEPARTAMENTOS")
 
         if (nomes.count() > 0)
         {
@@ -52,7 +55,12 @@ class departamentos : Fragment()
             }
 
             fgView.lista_dep.setOnItemLongClickListener() { adapterView, view, i, l ->
-                Toast.makeText(activity, "DELETAR", Toast.LENGTH_SHORT).show()
+
+                db.deletarDpto(nomes[i].component4())
+
+                fragmentManager?.beginTransaction()?.replace(R.id.container,
+                    departamentos()
+                )?.remove(this)?.commit()
                 true
             }
         }

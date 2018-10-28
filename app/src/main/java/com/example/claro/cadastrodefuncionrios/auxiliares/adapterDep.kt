@@ -18,7 +18,7 @@ class adapterDep (var context: Context, var dataSource: ArrayList<dep>) : BaseAd
         var imgAvatar: ImageView? = null
 
         init {
-            this.txtName = row?.findViewById(R.id.nome) as TextView
+            this.txtName = row?.findViewById(R.id.nome_dpto_list) as TextView
             this.imgAvatar = row?.findViewById(R.id.imgFundo) as ImageView
         }
     }
