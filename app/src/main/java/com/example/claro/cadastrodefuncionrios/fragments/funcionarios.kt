@@ -1,5 +1,6 @@
 package com.example.claro.cadastrodefuncionrios.fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -8,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
+import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.auxiliares.adapterDep
 import com.example.claro.cadastrodefuncionrios.auxiliares.adapterFun
+import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import com.example.claro.cadastrodefuncionrios.classes.dep
 import com.example.claro.cadastrodefuncionrios.classes.funci
 
@@ -18,12 +21,23 @@ import kotlinx.android.synthetic.main.funcionarios.view.*
 
 class funcionarios : Fragment()
 {
+    lateinit var db : dbHelper
+    private lateinit var model: MainActivity.Compartilhado
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        super.onCreate(savedInstanceState)
+        model = activity?.run {
+            ViewModelProviders.of(this).get(MainActivity.Compartilhado::class.java)
+        } ?: throw Exception("Invalid Activity")
 
         var fgView = inflater.inflate(R.layout.funcionarios, container, false)
 
         var listView = fgView.findViewById(R.id.lista_fun) as ListView
+
+        val dptoAtual = model.selecionado.value
+
+        Log.d("CURA", "${dptoAtual?.component1()}")
 
         var nomesFunc: ArrayList<funci> = ArrayList()
         nomesFunc.add(funci("Felipe Claro", 30, "36933948811", 45, 30))
