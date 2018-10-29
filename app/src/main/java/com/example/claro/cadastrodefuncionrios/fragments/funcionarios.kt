@@ -53,7 +53,7 @@ class funcionarios : Fragment()
 
             fgView.lista_fun.setOnItemLongClickListener() { adapterView, view, i, l ->
 
-                db.deletarFun(nomesFunc[i].component2())
+                db.deletarFunId(nomesFunc[i].component2())
 
                 fragmentManager?.beginTransaction()?.replace(R.id.container,
                     funcionarios()

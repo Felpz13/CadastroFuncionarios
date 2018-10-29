@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.PopupMenu
+import android.widget.PopupWindow
 import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
@@ -18,6 +20,7 @@ import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import kotlinx.android.synthetic.main.departamentos.view.*
 import com.example.claro.cadastrodefuncionrios.classes.dep
 import com.example.claro.cadastrodefuncionrios.classes.funci
+import kotlinx.android.synthetic.main.departamentos.*
 import java.nio.channels.Selector
 
 class departamentos : Fragment()
@@ -74,19 +77,51 @@ class departamentos : Fragment()
 
             fgView.lista_dep.setOnItemLongClickListener() { adapterView, view, i, l ->
 
-                db.deletarDpto(nomes[i].component4())
-                val dptoAtual : Int = model.selecionado.value!!.component4()
+                val opcoes = PopupMenu(context, view)
 
-                var nomesFunc: ArrayList<funci> = db.listarFun(dptoAtual)
+                val dptoAtual : dep = nomes[i]
 
-                for (i in 0 .. nomesFunc.count() - 1)
-                {
-                    db.deletarFun(nomesFunc[i].component4())
+                model.select(dptoAtual)
+
+                opcoes.setOnMenuItemClickListener { item ->
+                    when (item.itemId)
+                    {
+                        R.id.menu_deletar -> {
+
+                            db.deletarDpto(nomes[i].component4())
+                            val dptoAtual : Int = model.selecionado.value!!.component4()
+
+                            var nomesFunc: ArrayList<funci> = ArrayList()
+                            nomesFunc = db.listarFun(dptoAtual)
+
+                            for (i in 0 .. nomesFunc.count() - 1)
+                            {
+                                Log.d("CURA", "${nomesFunc}")
+                                db.deletarFun(nomesFunc[i].component4())
+                            }
+
+                            fragmentManager?.beginTransaction()?.replace(R.id.container,
+                                departamentos()
+                            )?.remove(this)?.commit()
+
+                            true
+                        }
+
+                        R.id.menu_alterar -> {
+
+                            fragmentManager?.beginTransaction()?.replace(R.id.container,
+                                departamentos_update()
+                            )?.remove(this)?.commit()
+
+                            true
+                        }
+
+                        else -> false
+                    }
                 }
 
-                fragmentManager?.beginTransaction()?.replace(R.id.container,
-                    departamentos()
-                )?.remove(this)?.commit()
+                opcoes.inflate(R.menu.menu_main)
+                opcoes.show()
                 true
             }
         }

@@ -67,6 +67,18 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
         return lista
     }
 
+    fun atualizarDep( id: Int, name: String, sigla: String, img: Int)
+    {
+        val db: SQLiteDatabase = writableDatabase
+        val values = ContentValues()
+        values.put("name",name)
+        values.put("sigla",sigla)
+        values.put("img",img)
+
+        db.update("departamentos", values, "id == $id", null)
+        db.close()
+    }
+
     fun deletarDpto( id : Int)
     {
         val db = this.writableDatabase
@@ -129,7 +141,17 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
             db.close()
     }
 
+
     fun deletarFun( id : Int)
+    {
+        val db = this.writableDatabase
+
+        db.delete("funcionarios", "idpto == + $id", null)
+
+        db.close()
+    }
+
+    fun deletarFunId( id : Int)
     {
         val db = this.writableDatabase
 
