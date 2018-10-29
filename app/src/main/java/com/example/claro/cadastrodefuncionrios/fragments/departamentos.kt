@@ -17,6 +17,7 @@ import com.example.claro.cadastrodefuncionrios.auxiliares.adapterDep
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import kotlinx.android.synthetic.main.departamentos.view.*
 import com.example.claro.cadastrodefuncionrios.classes.dep
+import com.example.claro.cadastrodefuncionrios.classes.funci
 import java.nio.channels.Selector
 
 class departamentos : Fragment()
@@ -32,8 +33,6 @@ class departamentos : Fragment()
         model = activity?.run {ViewModelProviders.of(this).get(MainActivity.Compartilhado::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        Log.d("CURA", "IMG VIEW")
-
         var fgView = inflater.inflate(R.layout.departamentos, container, false)
 
         var listView = fgView.lista_dep as ListView
@@ -41,6 +40,8 @@ class departamentos : Fragment()
         var nomes: ArrayList<dep> = ArrayList()
 
         db = dbHelper(activity!!.applicationContext)
+
+        //Log.d("CURA", "${db.tableExists("funcionarios" )}")
 
         //db.deleteAll()
 
@@ -74,6 +75,14 @@ class departamentos : Fragment()
             fgView.lista_dep.setOnItemLongClickListener() { adapterView, view, i, l ->
 
                 db.deletarDpto(nomes[i].component4())
+                val dptoAtual : Int = model.selecionado.value!!.component4()
+
+                var nomesFunc: ArrayList<funci> = db.listarFun(dptoAtual)
+
+                for (i in 0 .. nomesFunc.count() - 1)
+                {
+                    db.deletarFun(nomesFunc[i].component4())
+                }
 
                 fragmentManager?.beginTransaction()?.replace(R.id.container,
                     departamentos()

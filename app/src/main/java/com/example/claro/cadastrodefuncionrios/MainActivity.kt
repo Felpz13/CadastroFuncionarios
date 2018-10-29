@@ -33,9 +33,11 @@ class MainActivity : AppCompatActivity()
     {
         val selecionado = MutableLiveData<dep>()
 
-        fun select(item: dep) {
+        fun select(item: dep)
+        {
             selecionado.value = item
         }
+
     }
 
 }

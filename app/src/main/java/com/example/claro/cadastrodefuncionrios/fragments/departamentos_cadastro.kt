@@ -56,9 +56,9 @@ class departamentos_cadastro : Fragment()
             Log.d("CURA", "SIGLA: $sigla")
             Log.d("CURA", "IMG: $img")
 
-            if (nome.matches(regex))
+            if (nome.matches(regex) || nome == "" || sigla == "")
             {
-                Toast.makeText(activity, "Nome Inserido Inválido", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Dados Inseridos Inválidos", Toast.LENGTH_SHORT).show()
             }
 
             else
@@ -70,9 +70,6 @@ class departamentos_cadastro : Fragment()
             }
 
             fgView.hideKeyboard()
-
-
-
         }
 
         fgView.bt_cad_img_ant.setOnClickListener { view ->

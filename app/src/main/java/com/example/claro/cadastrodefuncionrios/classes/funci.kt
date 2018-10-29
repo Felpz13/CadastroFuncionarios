@@ -10,6 +10,5 @@ data class funci(var nome : String, var id : Int, var rg : String, var idDpto : 
 
         require(!nome.matches(regex)) { "O Nome não pode conter numeros" }
 
-        if (img == 30) img = R.drawable.ic_launcher_background
     }
 }

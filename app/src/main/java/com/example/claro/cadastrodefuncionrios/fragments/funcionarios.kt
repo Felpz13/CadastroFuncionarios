@@ -33,31 +33,32 @@ class funcionarios : Fragment()
 
         var fgView = inflater.inflate(R.layout.funcionarios, container, false)
 
-        var listView = fgView.findViewById(R.id.lista_fun) as ListView
+        var listView = fgView.lista_fun as ListView
 
-        val dptoAtual = model.selecionado.value
+        db = dbHelper(activity!!.applicationContext)
 
-        Log.d("CURA", "${dptoAtual?.component1()}")
+        val dptoAtual : Int = model.selecionado.value!!.component4()
 
         var nomesFunc: ArrayList<funci> = ArrayList()
-        nomesFunc.add(funci("Felipe Claro", 30, "36933948811", 45, 30))
+
+        nomesFunc = db.listarFun(dptoAtual)
 
         Log.d("CURA", "FRAG: FUNCIONARIOS")
 
 
         if (nomesFunc.count() > 0)
         {
-            listView.adapter = adapterFun(getActivity()!!.getApplicationContext(),nomesFunc
-            )
+            listView.adapter = adapterFun(activity!!.applicationContext,nomesFunc)
 
-
-            fgView.lista_fun.setOnItemClickListener(){adapterView, view, i, l ->
-
-                Toast.makeText(activity, "DETALHES FUNCIONARIOS", Toast.LENGTH_SHORT).show()
-            }
 
             fgView.lista_fun.setOnItemLongClickListener() { adapterView, view, i, l ->
-                Toast.makeText(activity, "DELETAR", Toast.LENGTH_SHORT).show()
+
+                db.deletarFun(nomesFunc[i].component2())
+
+                fragmentManager?.beginTransaction()?.replace(R.id.container,
+                    funcionarios()
+                )?.remove(this)?.commit()
+
                 true
             }
         }
