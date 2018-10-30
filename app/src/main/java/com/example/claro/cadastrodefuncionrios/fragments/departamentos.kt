@@ -141,9 +141,7 @@ class departamentos : Fragment()
                R.id.container,
                departamentos_cadastro()
            )?.remove(this)?.commit()
-
         }
-
 
         return fgView
     }

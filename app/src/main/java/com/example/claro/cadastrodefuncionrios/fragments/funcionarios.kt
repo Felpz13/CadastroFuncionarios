@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.PopupMenu
 import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
@@ -51,14 +52,39 @@ class funcionarios : Fragment()
             listView.adapter = adapterFun(activity!!.applicationContext,nomesFunc)
 
 
-            fgView.lista_fun.setOnItemLongClickListener() { adapterView, view, i, l ->
+            fgView.lista_fun.setOnItemLongClickListener{ adapterView, view, i, l ->
 
-                db.deletarFunId(nomesFunc[i].component2())
+                val opcoes = PopupMenu(context,view)
+                model.selectFun(nomesFunc[i])
 
-                fragmentManager?.beginTransaction()?.replace(R.id.container,
-                    funcionarios()
-                )?.remove(this)?.commit()
+                opcoes.setOnMenuItemClickListener { item ->
+                    when (item.itemId)
+                    {
+                        R.id.menu_deletar -> {
 
+                            db.deletarFunId(nomesFunc[i].component2())
+
+                            fragmentManager?.beginTransaction()?.replace(R.id.container,
+                                funcionarios()
+                            )?.remove(this)?.commit()
+
+                            true
+                        }
+
+                        R.id.menu_alterar -> {
+                            fragmentManager?.beginTransaction()?.replace(R.id.container,
+                                funcionarios_update()
+                            )?.remove(this)?.commit()
+
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+
+                opcoes.inflate(R.menu.menu_main)
+                opcoes.show()
                 true
             }
         }
@@ -66,14 +92,14 @@ class funcionarios : Fragment()
         {
             fgView.txt_sem_cad_fun.visibility = View.VISIBLE
             listView.adapter = adapterFun(
-                getActivity()!!.getApplicationContext(),
+                activity!!.applicationContext,
                 nomesFunc
             )
         }
 
         fgView.bt_nv_fun.setOnClickListener { view ->
 
-            getFragmentManager()?.beginTransaction()?.replace(
+            fragmentManager?.beginTransaction()?.replace(
                 R.id.container,
                 funcionarios_cadastro()
             )?.remove(this)?.commit()
@@ -82,13 +108,12 @@ class funcionarios : Fragment()
 
         fgView.bt_lista_func_voltar.setOnClickListener { view ->
 
-            getFragmentManager()?.beginTransaction()?.replace(
+            fragmentManager?.beginTransaction()?.replace(
                 R.id.container,
                 departamentos()
             )?.remove(this)?.commit()
 
         }
-
 
         return fgView
     }

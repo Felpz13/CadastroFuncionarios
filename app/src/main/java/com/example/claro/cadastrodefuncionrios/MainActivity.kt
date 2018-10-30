@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import com.example.claro.cadastrodefuncionrios.classes.dep
+import com.example.claro.cadastrodefuncionrios.classes.funci
 import com.example.claro.cadastrodefuncionrios.fragments.departamentos
 
 
@@ -32,11 +33,18 @@ class MainActivity : AppCompatActivity()
     class Compartilhado : ViewModel()
     {
         val selecionado = MutableLiveData<dep>()
+        val funSelecionado = MutableLiveData<funci>()
 
         fun select(item: dep)
         {
             selecionado.value = item
         }
+
+        fun selectFun(item: funci)
+        {
+            funSelecionado.value = item
+        }
+
 
     }
 

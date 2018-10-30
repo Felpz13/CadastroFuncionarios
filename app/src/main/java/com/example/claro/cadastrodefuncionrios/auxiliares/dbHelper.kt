@@ -160,6 +160,23 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
         db.close()
     }
 
+    fun atualizarFun(id : Int, name : String, rg : String, img : Int)
+    {
+        Log.d("CURA", "EXECUTOU FUNCAO ALTERAR")
+
+        val db: SQLiteDatabase = writableDatabase
+        val values = ContentValues()
+        values.put("nome",name)
+        values.put("rg",rg)
+        values.put("foto",img)
+
+        db.update("funcionarios", values, "id == $id", null)
+
+        Log.d("CURA", "ALTEROU FUNCIONARIO")
+
+        db.close()
+    }
+
     fun tableExists(tableName: String) : Int
     {
         val db = writableDatabase
