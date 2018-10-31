@@ -49,12 +49,11 @@
 
         <TextView
                 android:id="@+id/rg_txt"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RG:"
                 android:textColor="#212121"
-
                 android:layout_below="@+id/nome_txt"
                 android:layout_marginRight="4sp"
                 android:layout_marginLeft="6sp"
@@ -63,7 +62,7 @@
 
         <TextView
                 android:id="@+id/rg"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="123456789"
@@ -77,7 +76,7 @@
 
         <TextView
                 android:id="@+id/nome_txt"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nome:"
@@ -89,7 +88,7 @@
 
         <TextView
                 android:id="@+id/nome_fun"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:text="Exemplo"
