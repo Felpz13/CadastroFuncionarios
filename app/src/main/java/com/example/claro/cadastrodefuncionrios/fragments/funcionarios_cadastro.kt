@@ -2,9 +2,7 @@ package com.example.claro.cadastrodefuncionrios.fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +21,7 @@ import com.example.claro.cadastrodefuncionrios.classes.funci
 class funcionarios_cadastro : Fragment()
 {
     lateinit var db : dbHelper
-    val cameraRequest = 0
+    var  img: Int = 0
     private lateinit var model: MainActivity.Compartilhado
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,29 +39,10 @@ class funcionarios_cadastro : Fragment()
 
         Log.d("CURA", "FUNCIONARIO CADASTRO")
 
-
-        fgView.bt_func_camera.setOnClickListener { view ->
-
-            val camera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-            startActivityForResult(camera, cameraRequest)
-
-        }
-
-        fgView.bt_fun_voltar.setOnClickListener { view ->
-
-            getFragmentManager()?.beginTransaction()?.replace(
-                R.id.container,
-                funcionarios()
-            )?.remove(this)?.commit()
-
-        }
-
         fgView.bt_fun_inserir.setOnClickListener { view ->
 
             var nome : String = func_nome.text.toString()
             var rg : String = func_rg.text.toString()
-            var img = R.drawable.icon_app
 
             val regex = Regex(".*\\d+.*")
 
@@ -83,7 +62,14 @@ class funcionarios_cadastro : Fragment()
                 if (nomesFunc[i].component3() == rg) duplicado = 1
             }
 
-            if (nome.matches(regex) || (duplicado == 1))
+            img = genero.checkedRadioButtonId
+
+            if (feminino.isChecked) img = R.drawable.female
+            else if (masculino.isChecked) img = R.drawable.male
+
+            Log.d("CURA", "IMG: $img")
+
+            if (nome.matches(regex) || (duplicado == 1) || (img == 0) || nome == "" || rg == "")
             {
                 Toast.makeText(activity, "Dados Inseridos Inválidos", Toast.LENGTH_SHORT).show()
             }
@@ -100,10 +86,20 @@ class funcionarios_cadastro : Fragment()
             fgView.hideKeyboard()
         }
 
+        fgView.bt_fun_voltar.setOnClickListener { view ->
+
+            getFragmentManager()?.beginTransaction()?.replace(
+                R.id.container,
+                funcionarios()
+            )?.remove(this)?.commit()
+
+        }
+
         return fgView
     }
 
-    fun View.hideKeyboard() {
+    fun View.hideKeyboard()
+    {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }

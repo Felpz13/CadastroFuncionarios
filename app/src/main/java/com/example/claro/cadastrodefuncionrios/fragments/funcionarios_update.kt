@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,15 @@ import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
+import com.example.claro.cadastrodefuncionrios.classes.funci
+import kotlinx.android.synthetic.main.funcionarios_cadastro.*
 import kotlinx.android.synthetic.main.funcionarios_update.*
 import kotlinx.android.synthetic.main.funcionarios_update.view.*
 
 class funcionarios_update : Fragment()
 {
     lateinit var db : dbHelper
+    var  img: Int = 0
     private lateinit var model: MainActivity.Compartilhado
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -55,10 +59,23 @@ class funcionarios_update : Fragment()
             val regex = Regex(".*\\d+.*")
             val nome = func_nome_up.text.toString()
             val rg = func_rg_up.text.toString()
-            val img : Int = funcSelecionado!!.component5()
-            val id : Int = funcSelecionado.component2()
+            val id : Int = funcSelecionado!!.component2()
 
-            if (nome.matches(regex) || nome == "" || rg == "")
+            var nomesFunc: ArrayList<funci> = ArrayList()
+
+            nomesFunc = db.listarFun(-1)
+
+            var duplicado : Int = 0
+
+            for (i in 0 until nomesFunc.count() - 1)
+            {
+                if ((nomesFunc[i].rg == rg) && (nomesFunc[i].id != id)) duplicado = 1
+            }
+
+            if (feminino_up.isChecked) img = R.drawable.female
+            else if (masculino_up.isChecked) img = R.drawable.male
+
+            if (nome.matches(regex) || nome == "" || rg == "" || duplicado == 1 || img == 0)
             {
                 Toast.makeText(activity, "Dados Inseridos Inválidos", Toast.LENGTH_SHORT).show()
             }

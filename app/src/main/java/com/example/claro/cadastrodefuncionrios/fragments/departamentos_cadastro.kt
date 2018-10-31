@@ -1,9 +1,7 @@
 package com.example.claro.cadastrodefuncionrios.fragments
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
-import android.support.annotation.DrawableRes
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +11,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
-import com.example.claro.cadastrodefuncionrios.classes.dep
 import kotlinx.android.synthetic.main.departamentos_cadastro.*
 import kotlinx.android.synthetic.main.departamentos_cadastro.view.*
 

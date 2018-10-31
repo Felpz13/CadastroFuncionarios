@@ -13,9 +13,6 @@ import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
-import com.example.claro.cadastrodefuncionrios.classes.dep
-import kotlinx.android.synthetic.main.departamentos_cadastro.*
-import kotlinx.android.synthetic.main.departamentos_cadastro.view.*
 import kotlinx.android.synthetic.main.departamentos_update.*
 import kotlinx.android.synthetic.main.departamentos_update.view.*
 
@@ -45,6 +42,14 @@ class departamentos_update : Fragment()
         fgView.sigla_dpto_up.setText(dptoAtual?.sigla)
         fgView.img_dpto_up.setImageResource(dptoAtual!!.img)
 
+        when (dptoAtual!!.img)
+        {
+            R.drawable.d1 -> i = 0
+            R.drawable.d2 -> i = 1
+            R.drawable.d3 -> i = 2
+            R.drawable.d4 -> i = 3
+            R.drawable.d5 -> i = 4
+        }
 
         fgView.bt_up_voltar.setOnClickListener { view ->
 

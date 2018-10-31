@@ -18,10 +18,32 @@
 
     />
 
+    <ImageView
+            android:id="@+id/func_alterar"
+            android:src="@drawable/ic_edit_black_24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:foregroundGravity="bottom"
+            android:layout_toLeftOf="@+id/func_remover"
+    />
+
+    <ImageView
+            android:id="@+id/func_remover"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:foregroundGravity="bottom"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+    />
+
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/foto"
+            android:layout_toLeftOf="@+id/func_alterar"
             android:layout_centerVertical="true"
     >
 
@@ -42,9 +64,9 @@
         <TextView
                 android:id="@+id/rg"
                 android:textSize="22sp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="111111111111"
+                android:text="123456789"
                 android:layout_toRightOf="@+id/nome_txt"
                 android:textColor="#212121"
                 android:layout_below="@+id/nome_fun"
@@ -68,8 +90,8 @@
         <TextView
                 android:id="@+id/nome_fun"
                 android:textSize="22sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
                 android:text="Exemplo"
                 android:textColor="#212121"
                 android:layout_toRightOf="@+id/nome_txt"

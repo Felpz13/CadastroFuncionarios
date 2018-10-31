@@ -5,9 +5,9 @@
         android:layout_height="match_parent">
 
     <TextView
-            android:id="@+id/titulo_dep"
-            android:text="Funcionarios:"
-            android:textSize="42dp"
+            android:id="@+id/titulo_fun"
+            android:text="Funcionarios (DEP): "
+            android:textSize="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/lay_novo"
-            android:layout_below="@id/titulo_dep">
+            android:layout_below="@id/titulo_fun">
 
 
     </ListView>
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="#979393"
     >
 
         <Button

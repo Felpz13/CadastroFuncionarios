@@ -1,18 +1,16 @@
 package com.example.claro.cadastrodefuncionrios.fragments
 
-import android.app.Activity
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.PopupMenu
-import android.widget.PopupWindow
-import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.MainActivity
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.auxiliares.adapterDep
@@ -20,8 +18,6 @@ import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import kotlinx.android.synthetic.main.departamentos.view.*
 import com.example.claro.cadastrodefuncionrios.classes.dep
 import com.example.claro.cadastrodefuncionrios.classes.funci
-import kotlinx.android.synthetic.main.departamentos.*
-import java.nio.channels.Selector
 
 class departamentos : Fragment()
 {
@@ -86,23 +82,45 @@ class departamentos : Fragment()
                 opcoes.setOnMenuItemClickListener { item ->
                     when (item.itemId)
                     {
-                        R.id.menu_deletar -> {
+                        R.id.menu_deletar ->
+                        {
 
-                            db.deletarDpto(nomes[i].component4())
-                            val dptoAtual : Int = model.selecionado.value!!.component4()
+                            val builder = AlertDialog.Builder(activity as Context)
 
-                            var nomesFunc: ArrayList<funci> = ArrayList()
-                            nomesFunc = db.listarFun(dptoAtual)
+                            builder.setTitle("ATENÇÃO: ")
 
-                            for (i in 0 .. nomesFunc.count() - 1)
-                            {
-                                Log.d("CURA", "${nomesFunc}")
-                                db.deletarFun(nomesFunc[i].component4())
+                            builder.setMessage("Deseja mesmo deletar ${nomes[i].nome}?")
+
+                            builder.setPositiveButton("SIM") { dialog, which ->
+
+                                Log.d("CURA", "ALERTA : SIM")
+
+                                db.deletarDpto(nomes[i].component4())
+                                val dptoAtual : Int = model.selecionado.value!!.component4()
+
+                                var nomesFunc: ArrayList<funci> = ArrayList()
+                                nomesFunc = db.listarFun(dptoAtual)
+
+                                for (i in 0 .. nomesFunc.count() - 1)
+                                {
+                                    Log.d("CURA", "${nomesFunc}")
+                                    db.deletarFun(nomesFunc[i].component4())
+                                }
+
+                                fragmentManager?.beginTransaction()?.replace(R.id.container,
+                                    departamentos()
+                                )?.remove(this)?.commit()
+
+
+
                             }
 
-                            fragmentManager?.beginTransaction()?.replace(R.id.container,
-                                departamentos()
-                            )?.remove(this)?.commit()
+                            builder.setNegativeButton("Não") { dialog, which ->
+
+
+                            }
+
+                                .show()
 
                             true
                         }

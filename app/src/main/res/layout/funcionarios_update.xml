@@ -43,7 +43,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Foto: "
+                android:text="Genero: "
                 android:textStyle="bold"
                 android:textColor="#212121"
                 android:textSize="22dp"
@@ -86,13 +86,33 @@
 
         >
 
-            <Button
-                    android:id="@+id/bt_func_camera_up"
-                    android:text="Camera"
-                    android:layout_centerHorizontal="true"
+            <RadioGroup
+                    android:id="@+id/genero_up"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+            >
 
+                <RadioButton
+                        android:id="@+id/masculino_up"
+                        android:text="M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:layout_marginRight="12dp"
+                />
+
+                <RadioButton
+                        android:id="@+id/feminino_up"
+                        android:text="F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:layout_marginLeft="12dp"
+                />
+
+            </RadioGroup>
         </RelativeLayout>
 
     </LinearLayout>
@@ -101,6 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:background="#979393"
     >
 
         <Button

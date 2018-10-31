@@ -4,6 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.RadioButton
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import com.example.claro.cadastrodefuncionrios.classes.dep
 import com.example.claro.cadastrodefuncionrios.classes.funci
@@ -45,7 +47,5 @@ class MainActivity : AppCompatActivity()
             funSelecionado.value = item
         }
 
-
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.claro.cadastrodefuncionrios.auxiliares
 
 import android.content.Context
+import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,12 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.claro.cadastrodefuncionrios.R
-import com.example.claro.cadastrodefuncionrios.classes.dep
 import com.example.claro.cadastrodefuncionrios.classes.funci
+import com.example.claro.cadastrodefuncionrios.fragments.funcionarios
+import kotlinx.android.synthetic.main.fun_item.view.*
 
-class adapterFun (var context: Context, var dataSource: ArrayList<funci>) : BaseAdapter()
+class adapterFun (var context: Context, var dataSource: ArrayList<funci>, var mcontext : funcionarios) : BaseAdapter()
 {
-
     private class ViewHolder(row: View?) {
         var txtName: TextView? = null
         var rg: TextView? = null
@@ -49,6 +50,22 @@ class adapterFun (var context: Context, var dataSource: ArrayList<funci>) : Base
         viewHolder.rg?.text = elemento.rg
         viewHolder.imgAvatar?.setImageResource(elemento.img)
 
+        view?.func_alterar?.setOnClickListener{view ->
+
+            val novof : funci = dataSource.get(position)
+
+            mcontext.modificar(novof)
+    }
+
+
+        view?.func_remover?.setOnClickListener { view ->
+
+            val novof: funci = dataSource.get(position)
+
+            mcontext.alert(novof)
+
+        }
+
         return view as View
     }
 
@@ -66,4 +83,5 @@ class adapterFun (var context: Context, var dataSource: ArrayList<funci>) : Base
     {
         return dataSource.count()
     }
+
 }
