@@ -90,7 +90,7 @@
                 android:id="@+id/nome_fun"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
-                android:layout_height="28dp"
+                android:layout_height="wrap_content"
                 android:text="Exemplo"
                 android:textColor="#212121"
                 android:layout_toRightOf="@+id/nome_txt"

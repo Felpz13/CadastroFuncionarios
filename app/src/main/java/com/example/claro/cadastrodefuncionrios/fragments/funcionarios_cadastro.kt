@@ -66,6 +66,7 @@ class funcionarios_cadastro : Fragment()
 
             if (feminino.isChecked) img = R.drawable.female
             else if (masculino.isChecked) img = R.drawable.male
+            else img == 0
 
             Log.d("CURA", "IMG: $img")
 

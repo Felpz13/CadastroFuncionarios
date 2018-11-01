@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,7 @@ class departamentos : Fragment()
 
             fgView.lista_dep.setOnItemLongClickListener() { adapterView, view, i, l ->
 
-                val opcoes = PopupMenu(context, view)
+                val opcoes = PopupMenu(ContextThemeWrapper(context, R.style.popup), view)
 
                 val dptoAtual : dep = nomes[i]
 

@@ -3,9 +3,22 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#979393</item>
-        <item name="colorPrimaryDark">#080808</item>
-        <item name="colorAccent">#176401</item>
+        <item name="colorPrimary">@color/Moldura_app</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
+        <item name="android:colorBackground">@color/background_material_light</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/titulo_branco</item>
+        <item name="android:textSize">28dp</item>
+    </style>
+
+    <style name="popup" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:itemBackground">@color/Moldura_app</item>
     </style>
 
 </resources>
+
+

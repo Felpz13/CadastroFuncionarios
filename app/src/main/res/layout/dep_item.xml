@@ -4,9 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_margin="12dp"
-        android:background="@drawable/itens"
+        android:background="@drawable/bt_fundo"
 
 >
 
@@ -16,6 +14,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_margin="8dp"
 
     />
 
@@ -29,7 +28,7 @@
             android:layout_toLeftOf="@+id/imgFundo"
             android:layout_centerVertical="true"
             android:layout_marginRight="4sp"
-            android:layout_marginLeft="6sp"
+            android:layout_marginLeft="20dp"
 
     />
 

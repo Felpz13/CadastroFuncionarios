@@ -11,7 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp"
+    />
 
     <TextView
             android:id="@+id/txt_sem_cad"
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#979393"
+            android:background="@color/Moldura_app"
     >
 
         <TextView
@@ -48,7 +49,7 @@
                 android:layout_gravity="bottom"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="#fffdfd"
 
         />
 
