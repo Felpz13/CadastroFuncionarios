@@ -45,7 +45,12 @@ class funcionarios_update : Fragment()
         fgView.func_nome_up.setText(funcSelecionado?.component1())
         fgView.func_rg_up.setText(funcSelecionado?.component3())
 
+        if (funcSelecionado?.img == R.drawable.female) fgView.feminino_up.isChecked = true
+        else fgView.masculino_up.isChecked = true
+
         fgView.bt_fun_voltar_up.setOnClickListener { view ->
+
+            fgView.hideKeyboard()
 
             fragmentManager?.beginTransaction()?.replace(
                 R.id.container,
@@ -75,10 +80,17 @@ class funcionarios_update : Fragment()
             if (feminino_up.isChecked) img = R.drawable.female
             else if (masculino_up.isChecked) img = R.drawable.male
 
-            if (nome.matches(regex) || nome == "" || rg == "" || duplicado == 1 || img == 0)
-            {
-                Toast.makeText(activity, "Dados Inseridos Inválidos", Toast.LENGTH_SHORT).show()
-            }
+            if (nome.matches(regex)) Toast.makeText(activity, "O Nome não pode conter numeros", Toast.LENGTH_SHORT).show()
+
+            else if (nome == "") Toast.makeText(activity, "O campo Nome não pode ser vazio", Toast.LENGTH_SHORT).show()
+
+            else if (rg == "") Toast.makeText(activity, "O campo RG não pode ser vazio", Toast.LENGTH_SHORT).show()
+
+            else if (rg.matches(regex) == false) Toast.makeText(activity, "RG não pode conter letras", Toast.LENGTH_SHORT).show()
+
+            else if (duplicado == 1) Toast.makeText(activity, "numero do RG já consta no cadastro", Toast.LENGTH_SHORT).show()
+
+            else if (img == 0) Toast.makeText(activity, "Gênero não selecionado", Toast.LENGTH_SHORT).show()
 
             else
             {

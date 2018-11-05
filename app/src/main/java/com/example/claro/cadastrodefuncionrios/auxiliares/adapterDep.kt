@@ -9,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.claro.cadastrodefuncionrios.R
 import com.example.claro.cadastrodefuncionrios.classes.dep
+import com.example.claro.cadastrodefuncionrios.fragments.departamentos
+import kotlinx.android.synthetic.main.dep_item.view.*
 
-class adapterDep (var context: Context, var dataSource: ArrayList<dep>) : BaseAdapter()
+class adapterDep (var context: Context, var dataSource: ArrayList<dep>, var mcontext : departamentos) : BaseAdapter()
 {
 
     private class ViewHolder(row: View?) {
@@ -44,6 +46,14 @@ class adapterDep (var context: Context, var dataSource: ArrayList<dep>) : BaseAd
         var elemento : dep = getItem(position) as dep
         viewHolder.txtName?.text = elemento.nome
         viewHolder.imgAvatar?.setImageResource(elemento.img)
+
+        view?.opcDep?.setOnClickListener { view ->
+
+            val novod: dep = dataSource.get(position)
+
+            mcontext.menuDep(novod, view)
+
+        }
 
         return view as View
     }

@@ -5,15 +5,20 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.example.claro.cadastrodefuncionrios.R
 import kotlinx.android.synthetic.main.funcionarios_cadastro.*
 import kotlinx.android.synthetic.main.funcionarios_cadastro.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import com.example.claro.cadastrodefuncionrios.MainActivity
+import com.example.claro.cadastrodefuncionrios.R.id.content
+import com.example.claro.cadastrodefuncionrios.R.id.genero
 import com.example.claro.cadastrodefuncionrios.auxiliares.dbHelper
 import com.example.claro.cadastrodefuncionrios.classes.funci
 
@@ -62,18 +67,20 @@ class funcionarios_cadastro : Fragment()
                 if (nomesFunc[i].component3() == rg) duplicado = 1
             }
 
-            img = genero.checkedRadioButtonId
-
-            if (feminino.isChecked) img = R.drawable.female
-            else if (masculino.isChecked) img = R.drawable.male
-            else img == 0
+            if (fgView.feminino.isChecked) img = R.drawable.female
+            else if (fgView.masculino.isChecked) img = R.drawable.male
 
             Log.d("CURA", "IMG: $img")
 
-            if (nome.matches(regex) || (duplicado == 1) || (img == 0) || nome == "" || rg == "")
-            {
-                Toast.makeText(activity, "Dados Inseridos Inválidos", Toast.LENGTH_SHORT).show()
-            }
+            if (nome.matches(regex)) Toast.makeText(activity, "O Nome não pode conter numeros", Toast.LENGTH_SHORT).show()
+
+            else if (nome == "") Toast.makeText(activity, "O campo Nome não pode ser vazio", Toast.LENGTH_SHORT).show()
+
+            else if (rg == "") Toast.makeText(activity, "O campo RG não pode ser vazio", Toast.LENGTH_SHORT).show()
+
+            else if (duplicado == 1) Toast.makeText(activity, "numero do RG já consta no cadastro", Toast.LENGTH_SHORT).show()
+
+            else if (img == 0) Toast.makeText(activity, "Gênero não selecionado", Toast.LENGTH_SHORT).show()
 
             else
             {
@@ -89,6 +96,8 @@ class funcionarios_cadastro : Fragment()
 
         fgView.bt_fun_voltar.setOnClickListener { view ->
 
+            fgView.hideKeyboard()
+
             getFragmentManager()?.beginTransaction()?.replace(
                 R.id.container,
                 funcionarios()
@@ -102,6 +111,7 @@ class funcionarios_cadastro : Fragment()
     fun View.hideKeyboard()
     {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
+        //imm.hideSoftInputFromWindow(view?.windowToken, 0)
+        imm.hideSoftInputFromWindow(applicationWindowToken, 0)
     }
 }

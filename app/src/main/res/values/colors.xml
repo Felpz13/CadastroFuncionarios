@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#000000</color>
     <color name="background_material_light">#ffffff</color>
-    <color name="Moldura_app">#002d62</color>
+    <color name="Moldura_app">#3c5999</color>
+    <color name="Fundo_app">#dfe2ee</color>
     <color name="titulo_branco">#ffffff</color>
 </resources>
