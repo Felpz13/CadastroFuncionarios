@@ -22,13 +22,12 @@ class departamentos_cadastro : Fragment()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
-        var fgView = inflater.inflate(R.layout.departamentos_cadastro, container, false)
-
-        Log.d("CURA", "DPTO CADASTRO")
+        val fgView = inflater.inflate(R.layout.departamentos_cadastro, container, false)
 
         db = dbHelper(activity!!.applicationContext)
 
         val imgs : IntArray = intArrayOf (R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5)
+
         var i = 0
 
 
@@ -48,10 +47,6 @@ class departamentos_cadastro : Fragment()
             var sigla : String = sigla_dpto.text.toString()
             var img = imgs[i]
             val regex = Regex(".*\\d+.*")
-
-            Log.d("CURA", "NOME: $nome")
-            Log.d("CURA", "SIGLA: $sigla")
-            Log.d("CURA", "IMG: $img")
 
             if (nome.matches(regex) || nome == "" || sigla == "")
             {

@@ -34,9 +34,9 @@ class departamentos_update : Fragment()
 
         val imgs : IntArray = intArrayOf (R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5)
         var i = 0
+
         val dptoAtual = model.selecionado.value
 
-        Log.d("CURA", "DPTO CADASTRO")
 
         fgView.nome_dpto_up.setText(dptoAtual?.nome)
         fgView.sigla_dpto_up.setText(dptoAtual?.sigla)

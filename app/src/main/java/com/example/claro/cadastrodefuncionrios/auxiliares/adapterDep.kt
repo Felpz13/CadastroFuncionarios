@@ -30,7 +30,7 @@ class adapterDep (var context: Context, var dataSource: ArrayList<dep>, var mcon
         val view: View?
         val viewHolder: ViewHolder
         if (convertView == null) {
-            var layout = LayoutInflater.from(context)
+            val layout = LayoutInflater.from(context)
             view = layout.inflate(R.layout.dep_item, parent, false)
             viewHolder = ViewHolder(view)
             view.tag = viewHolder
@@ -43,15 +43,13 @@ class adapterDep (var context: Context, var dataSource: ArrayList<dep>, var mcon
             viewHolder = view.tag as ViewHolder
         }
 
-        var elemento : dep = getItem(position) as dep
+        val elemento : dep = getItem(position) as dep
         viewHolder.txtName?.text = elemento.nome
         viewHolder.imgAvatar?.setImageResource(elemento.img)
 
         view?.opcDep?.setOnClickListener { view ->
 
-            val novod: dep = dataSource.get(position)
-
-            mcontext.menuDep(novod, view)
+            mcontext.menuDep(elemento, view)
 
         }
 

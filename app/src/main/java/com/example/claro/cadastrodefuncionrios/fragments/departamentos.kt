@@ -36,22 +36,15 @@ class departamentos : Fragment()
         model = activity?.run {ViewModelProviders.of(this).get(MainActivity.Compartilhado::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        var fgView = inflater.inflate(R.layout.departamentos, container, false)
+        val fgView = inflater.inflate(R.layout.departamentos, container, false)
 
-        var listView = fgView.lista_dep as ListView
+        val listView = fgView.lista_dep as ListView
 
         var nomes: ArrayList<dep> = ArrayList()
 
         db = dbHelper(activity!!.applicationContext)
 
-        //Log.d("CURA", "${db.tableExists("funcionarios" )}")
-
-        //db.deleteAll()
-
         nomes = db.listarDpto()
-
-
-        Log.d("CURA", "DEPARTAMENTOS")
 
         if (nomes.count() > 0) {
             listView.adapter = adapterDep(
@@ -66,8 +59,6 @@ class departamentos : Fragment()
 
                 model.select(dptoAtual)
 
-                Log.d("CURA", "${model.selecionado.value}")
-
                 fragmentManager?.beginTransaction()?.replace(
                     R.id.container,
                     funcionarios()
@@ -78,7 +69,6 @@ class departamentos : Fragment()
 
         else
         {
-            Log.d("CURA", "LISTA VAZIA")
             fgView.txt_sem_cad.visibility = View.VISIBLE
             listView.adapter = adapterDep(
                 activity!!.applicationContext,
@@ -125,14 +115,7 @@ class departamentos : Fragment()
                         db.deletarDpto(dep.component4())
                         val dptoAtual : Int = model.selecionado.value!!.component4()
 
-                        var nomesFunc: ArrayList<funci> = ArrayList()
-                        nomesFunc = db.listarFun(dptoAtual)
-
-                        for (i in 0 .. nomesFunc.count() - 1)
-                        {
-                            Log.d("CURA", "${nomesFunc}")
-                            db.deletarFun(nomesFunc[i].component4())
-                        }
+                        db.deletarFun(dptoAtual)
 
                         fragmentManager?.beginTransaction()?.replace(R.id.container,
                             departamentos()

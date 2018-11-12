@@ -19,7 +19,6 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
         db?.execSQL(query)
         db?.execSQL(query2)
 
-        Log.d("CURA", "EXECUTOU BANCO DE DADOS")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int)
@@ -162,8 +161,6 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
 
     fun atualizarFun(id : Int, name : String, rg : String, img : Int)
     {
-        Log.d("CURA", "EXECUTOU FUNCAO ALTERAR")
-
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues()
         values.put("nome",name)
@@ -171,8 +168,6 @@ class dbHelper (context: Context) : SQLiteOpenHelper(context, dbname, factory, v
         values.put("foto",img)
 
         db.update("funcionarios", values, "id == $id", null)
-
-        Log.d("CURA", "ALTEROU FUNCIONARIO")
 
         db.close()
     }

@@ -32,9 +32,9 @@ class funcionarios : Fragment()
             ViewModelProviders.of(this).get(MainActivity.Compartilhado::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        var fgView = inflater.inflate(R.layout.funcionarios, container, false)
+        val fgView = inflater.inflate(R.layout.funcionarios, container, false)
 
-        var listView = fgView.lista_fun as ListView
+        val listView = fgView.lista_fun as ListView
 
         db = dbHelper(activity!!.applicationContext)
 
@@ -49,14 +49,15 @@ class funcionarios : Fragment()
         if (nomesFunc.count() > 0)
         {
             listView.adapter = adapterFun(activity!!.applicationContext,nomesFunc, this)
-
+        }
+/*
             fgView.lista_fun.setOnItemClickListener{ adapterView, view, i, l ->
 
                 model.selectFun(nomesFunc[i])
 
             }
 
-            /*fgView.lista_fun.setOnItemLongClickListener{ adapterView, view, i, l ->
+            fgView.lista_fun.setOnItemLongClickListener{ adapterView, view, i, l ->
 
                 val opcoes = PopupMenu(context,view)
 
@@ -92,13 +93,10 @@ class funcionarios : Fragment()
                 opcoes.show()
                 true
             }*/
-        }
+
         else
         {
             fgView.txt_sem_cad_fun.visibility = View.VISIBLE
-            listView.adapter = adapterFun(
-                activity!!.applicationContext,
-                nomesFunc, this)
         }
 
         fgView.bt_nv_fun.setOnClickListener { view ->
@@ -160,12 +158,7 @@ class funcionarios : Fragment()
 
         builder.setNegativeButton("Não") { dialog, which ->
 
-
-
         }
-
             .show()
-
-
     }
 }

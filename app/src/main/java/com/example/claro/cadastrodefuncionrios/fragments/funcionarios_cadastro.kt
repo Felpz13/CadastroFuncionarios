@@ -36,7 +36,7 @@ class funcionarios_cadastro : Fragment()
             ViewModelProviders.of(this).get(MainActivity.Compartilhado::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        var fgView = inflater.inflate(R.layout.funcionarios_cadastro, container, false)
+        val fgView = inflater.inflate(R.layout.funcionarios_cadastro, container, false)
 
         db = dbHelper(activity!!.applicationContext)
 
@@ -46,15 +46,13 @@ class funcionarios_cadastro : Fragment()
 
         fgView.bt_fun_inserir.setOnClickListener { view ->
 
-            var nome : String = func_nome.text.toString()
-            var rg : String = func_rg.text.toString()
+            val nome : String = func_nome.text.toString()
+            val rg : String = func_rg.text.toString()
+
+            if (fgView.feminino.isChecked) img = R.drawable.female
+            else if (fgView.masculino.isChecked) img = R.drawable.male
 
             val regex = Regex(".*\\d+.*")
-
-            Log.d("CURA", "NOME: $nome")
-            Log.d("CURA", "RG: $rg")
-            Log.d("CURA", "IMG: $img")
-            Log.d("CURA", "DPTO: $dptoAtual")
 
             var nomesFunc: ArrayList<funci> = ArrayList()
 
@@ -66,9 +64,6 @@ class funcionarios_cadastro : Fragment()
             {
                 if (nomesFunc[i].component3() == rg) duplicado = 1
             }
-
-            if (fgView.feminino.isChecked) img = R.drawable.female
-            else if (fgView.masculino.isChecked) img = R.drawable.male
 
             Log.d("CURA", "IMG: $img")
 

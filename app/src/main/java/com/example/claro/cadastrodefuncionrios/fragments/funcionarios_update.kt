@@ -40,8 +40,6 @@ class funcionarios_update : Fragment()
 
         val funcSelecionado = model.funSelecionado.value
 
-        Log.d("CURA", "FUNCIONARIO ${funcSelecionado}")
-
         fgView.func_nome_up.setText(funcSelecionado?.component1())
         fgView.func_rg_up.setText(funcSelecionado?.component3())
 
